@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}Sistema de Pagos{% endblock %}  
+{% block content %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
+  .btn-custom {
+    background-color: #03111A;
+    color: white;
+  }
+  .payment-options {
+    border-right: 1px solid #ddd;
+    padding-right: 20px;
+  }
+  .comfortaa {
+    font-family: 'Comfortaa', cursive;
+  }
+</style>
+
+<script>
+  function updateTotal(price) {
+      document.getElementById("total").innerHTML = "Total: " + price;
+  }
+  </script>
+
+<div class="container my-4">
+  <br>
+  <div class="text-center comfortaa">
+    <h2 class="mb-2">Formulario de Pago</h2>
+    <br>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-6 payment-options comfortaa">
+      <h4>Selecciona el pago a realizar</h4>
+      <br>
+      <!-- Aquí puedes agregar los diferentes métodos de pago -->
+      <script>
+        function updateTotal(price) {
+            document.getElementById("total").innerHTML = "Total: " + price;
+        }
+        </script>
+        
+        {% for tratamiento in tratamientos %}
+            <div>
+              <input type="radio" id="tratamiento{{ tratamiento[0] }}" name="payment" value="{{ tratamiento[0] }}" onclick="updateTotal({{ tratamiento[3] }})">
+              <label for="tratamiento{{ tratamiento[0] }}">
+                {{ tratamiento[1] }} - {{ tratamiento[2] }}
+              </label>
+            </div>
+        {% endfor %}
+        
+        {% for resultado in resultados %}
+            <div>
+              <input type="radio" id="resultado{{ resultado[0] }}" name="payment" value="{{ resultado[0] }}" onclick="updateTotal({{ resultado[3] }})">
+              <label for="resultado{{ resultado[0] }}">{{ resultado[1] }}</label>
+            </div>
+        {% endfor %}
+
+        <br>
+        <div id="total">Total: </div>
+         
+    </div>
+    
+    <div class="col-md-6">
+      <form action="/pagos" method="POST">
+        <div class="mb-3">
+          <label for="cname" class="form-label">Nombre en la tarjeta*</label>
+          <input type="text" class="form-control" id="cname" name="cardname" placeholder="Nombre del Titular">
+        </div>
+        
+        <div class="mb-3">
+          <label for="ccnum" class="form-label">Número de la tarjeta de crédito*</label>
+          <input type="text" class="form-control" id="ccnum" name="cardnumber" placeholder="xxxx-xxxx-xxxx-xxxx">
+        </div>    
+        
+        <div class="row">      
+          <div class="col-md-6 mb-4">
+            <label for="expmonth" class="form-label">Fecha de expiración (MM/AA)*</label>
+            <input type="text" class="form-control" id="expmonth" name="expmonth" pattern="(0[1-9]|1[0-2])\/([0-9]{2})" placeholder="MM/AA">
+            <div class="form-text">Por favor, ingrese la fecha en el formato MM/AA</div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <label for="cvv" class="form-label">CVV*</label>
+            <input type="text" class="form-control" id="cvv" name="cvv" placeholder="cvv">
+            <button type="submit" class="btn btn-custom mt-3">Enviar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+  
+
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Registro de Usuarios{% endblock %}  
+
+{% block content %}
+
+
+<style>
+	.btn-custom {
+	  background-color: #03111A;
+	  color: white;
+	}
+	
+	.container h1 {
+		font-family: 'Comfortaa', cursive;
+	}
+
+  </style>
+
+		<!--MAIN-PAGE-->
+		<div class="container"> 
+			<h1 class="text-center my-4">Crear Cuenta</h1>
+			<form id="registro-form" class="col-lg-13" action="{{registroUsusario}}" method="POST">
+				<div class="row d-flex justify-content-center">
+					<div class="col-md-6">
+						<div class="mb-3">
+							<label for="nombre" class="form-label">Nombre/s</label>
+							<input type="text" class="form-control" value="{{nombre}}" id="nombre" name="nombre" placeholder="Nombre/s">
+
+						</div>
+						<div class="mb-3">
+							<label for="apellido" class="form-label">Apellido/s</label>
+							<input type="text" class="form-control" value="{{apellido}}" id="apellido" name="apellido" placeholder="Apellido/s">
+						</div>
+						<div class="mb-3">
+							<label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
+							<input type="date" class="form-control" value="{{fecha_nacimiento}}" id="fecha_nacimiento" name="fecha_nacimiento">
+						</div>
+						<div class="col-md-6">
+							<div class="mb-3">
+								<label for="telefono" class="form-label">Teléfono</label>
+								<input type="text" class="form-control" value="{{telefono}}" id="telefono" name="telefono" placeholder="Teléfono">
+							</div>				
+						
+					</div>
+					
+						<div class="mb-3">
+							<label for="correo" class="form-label">Correo</label>
+							<input type="email" class="form-control" value="{{correo}}" id="correo" name="correo" placeholder="example@example.com">
+						</div>
+						<div class="mb-3">
+							<label for="direccion" class="form-label">Direccion Completa</label>
+							<input type="text" autocomplete='new-password' class="form-control" value="{{direccion}}" id="direccion" name="direccion" placeholder="Direccion">
+						</div>
+						<div class="mb-3">
+							<label for="contrasena" class="form-label">Contraseña</label>
+							<input type="password" autocomplete='new-password' class="form-control" value="{{contrasena}}" id="contrasena" name="contrasena" placeholder="Contraseña">
+						</div>
+						<div class="mb-3">
+							<label for="repetirContrasena" class="form-label" >Repetir Contraseña</label>
+							<input type="password" autocomplete='new-password' class="form-control" value="{{contrasena}}" id="repetirContrasena" name="repetirContrasena" placeholder="Vuelva a ingresar su contraseña">
+						</div>
+					</div>
+					<div class="col-md-12 d-flex justify-content-center">
+						<button id="registro-btn" type="submit" class="btn btn-custom w-50 text-white">Crear Cuenta</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</br>
+{% endblock %}
+

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Registro de Usuarios{% endblock %}  
+
+{% block content %}
+
+<!--MAIN-PAGE-->
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Configuración del perfil</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" value="{{ paciente.nombre }}" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="apellido" class="form-label">Apellido</label>
+                                <input type="text" class="form-control" id="apellido" value="{{ paciente.apellido }}" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="correo" class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control" id="correo" value="{{ paciente.correo }}" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="telefono" class="form-label">Teléfono</label>
+                                <input type="text" class="form-control" id="telefono" value="{{ paciente.telefono }}" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                                <input type="date" class="form-control" id="fechaNacimiento" value="{{ paciente.fecha_nacimiento }}" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <a href="/editarPerfil/{{id_paciente}}" class="btn btn-dark ">Editar Perfil</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--FIN MAIN-PAGE-->
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Iniciar Sesión{% endblock %}  
+
+{% block content %}
+	<style>
+    	.btn-custom {
+      	background-color: #03111A;
+      	color: white;
+	    }
+		
+		.container h1 {
+			font-family: 'Comfortaa', cursive;
+		}
+
+  	</style>
+
+	
+
+  <div class="container">
+     <h1 class="text-center my-4">Inicio De Sesión</h1>
+    	<form action="/inicioSesion" method="post">
+			<div class="mb-3">
+		  		<label for="correo" class="form-label">Correo Electrónico</label>
+		  		<input type="email" class="form-control" id="correo" name="correo" placeholder="Correo Electrónico">
+			</div>
+			<div class="mb-3">
+				<label for="contrasena" class="form-label">Contraseña</label>
+				<input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Contraseña">
+			</div>
+				<p class="text-center mb-2">Crea tu cuenta <a href="registro">aqui.</a></p>
+				<button type="submit" class="btn btn-custom w-100">Iniciar Sesión</button>
+	  	</form>
+  </div>
+  {% endblock %}

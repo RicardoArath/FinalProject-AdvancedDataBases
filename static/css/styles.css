@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/static/css/fonts/Inter') format('truetype');
+}
+
+@keyframes move {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(390%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+}
+
+.animated-text {
+    animation: move 20s linear infinite;
+}
+
+.container{
+    background: #F5F5F5;
+    
+}
+
+header{
+    align-items: center;
+    background-color: #03111A;
+    width: 100%;
+}
+
+header h1 {
+    align-items: center;
+    color:#F5F5F5;
+    display: flex;
+    font-size: larger;
+    justify-content: space-between;
+    
+}
+
+.header-logo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 8%;
+    height: 10%;
+    
+}
+
+.header-logo img{
+    height: 3.5vb;
+}
+
+.header-logo p{
+    width: 20%;
+    margin : 15px;
+    font-family: 'Inter', SemiBold;
+    font-weight: 800;
+    font-size: 2.5vb;
+    line-height: 1vb;
+    color: #FFFFFF;
+}
+
+.image-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+}
+
+.image-text-content {
+    font-family: 'Comfortaa', sans-serif;
+    text-align: left;
+    position: absolute;
+    top: 50%;
+    left: 18%;
+    transform: translate(-100px, -250%);
+    color: #000000;
+}
+
+.image-text img{
+    width: 90%;
+    height: auto;
+}
+
+.image-text-content h2 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.image-text-content p {
+  font-size: 18px;
+}
+
+.navbar-brand.mr-auto{
+    background-image: url("/static/images/logo.png");
+    background-repeat: no-repeat;
+    background-position: 15%;
+    height: 150px;
+    width: 20%;
+}
+
+.navbar-nav .nav-link {
+    color: #000000;
+    font-family: 'Comfortaa', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.navbar-nav li {
+    margin-right: 20px;
+  }
+  .auth-buttons {
+    position: absolute;
+    top: 10%;
+    right: 16%;
+    z-index: 10;
+}
+
+.auth-buttons2 {
+    position: absolute;
+    top: 10%;
+    right: 2%;
+    z-index: 10;
+}
+  
+
+.btn-custom {
+	background-color: #03111A;
+}
+
+.image-text-content.btn-agenda-cita{
+    position: inherit;
+    transform: translateX(-100px);
+}
+
+.btn-agenda-cita {
+    position: absolute;
+    left: 20%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    padding: 12px 24px;
+    background-color: #03111A;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease; /* Añade una transición suave a la animación de hover */
+}
+
+.btn-agenda-cita:hover {
+    background-color: #becad0;
+    color: #03111A;
+}
+
+
+
+.doctor-image {
+
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .form-container {
+    justify-content: space-between;
+}
+
+
+.promo-box {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin: 20px 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.promo-box:hover {
+    transform: scale(1.05);
+}
+
+.promo-box h3 {
+    margin-bottom: 20px;
+}

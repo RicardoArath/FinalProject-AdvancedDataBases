@@ -1,0 +1,86 @@
+<!--base.html-->
+<!--TEMPLATE INICIAL QUE INCLUYE LAS BARRAS DE NAVEGACION QUE SE ENCUENTRAN EN TODAS LOS TEMPLATES-->
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+			crossorigin="anonymous"	/>
+		<link href="/static/css/styles.css" media="screen" rel="stylesheet" type="text/css" />
+        <!-- Incluye Bootstrap Bundle con Popper.js -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+      </head>
+      <body>
+    
+    <!--INICIO HEADER-->
+    <header>
+        <div class="header-logo" style="margin-left:8%;">
+        <img src="/static/images/telefono.png" alt="Icono de Telefono">
+        <p>+52 (81) 1234 5678 </p>
+        <h1><span class="animated-text">Llamadas de Emergencia</span></h1>
+        </div>
+    </header>    
+<!--FIN DEL HEADER-->
+	   
+<!--INICIO NAV BAR-->
+<nav class="navbar navbar-expand-lg">
+    <div class="container position-relative">
+        <a class="navbar-brand mr-auto" href="/"></a> 
+        
+        <!--VERIFICA EL INICIO DE SESION-->
+
+		{% if request.cookies.get('correo') %}
+
+        <div class="dropdown position-absolute top-0 end-0">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Bienvenido, {{ request.cookies.get('correo') }}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="{{ url_for('checkHistMedico') }}">Ver tu historial medico</a>
+                <a class="dropdown-item" href="pagos">Pagos</a>
+                <a class="dropdown-item" href="config">Configuración</a>
+                <a class="dropdown-item" href="{{ url_for('cerrarSesion') }}">Cerrar Sesión</a>
+            </div>
+        </div>
+        {% endif %}
+		{% if not request.cookies.get('correo') %}
+		<div class="auth-buttons2 d-flex align-items-center justify-content-end">
+			<a class="btn btn-outline-dark" href="inicioSesion">Inicio de Sesi&oacute;n</a>
+			<a class="btn btn-dark mx-1" href="registro">Registrarse</a>
+		</div>
+		{% endif %}
+        <!--CIERRA VERIFICACION DE INICIO DE SESION-->
+        <style>
+            .navbar-nav .nav-item {
+                margin-top: 30px;  /* Ajusta este valor según tus necesidades */
+            }
+        </style>
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/listaDeMedicos">Médicos y Especialidades</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/ubicacion">Ubicación</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/promos">Promociones</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">Acerca de Nosotros</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!--FIN NAV BAR-->
+{% block content %}
+    <!--AQUI VA TODO EL CONTENIDO EXTRA DE CADA PAGINA-->
+{% endblock %}
+
+
+</body>
+</html>

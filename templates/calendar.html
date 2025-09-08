@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Calendario - {{ medico[0] }}{% endblock %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var calendar = $('#calendar').fullCalendar({
+                editable: true,
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'agendaWeek,agendaDay'
+                },
+                defaultView: 'agendaWeek', // Establecer la vista de semana como la vista por defecto
+                // Limitar rango horario
+                minTime: '08:00:00',
+                maxTime: '19:00:00',
+    
+                selectAllow: function(selectInfo) {
+                    var start = selectInfo.start;
+                    var end = selectInfo.end;
+                    // Verificar si la fecha seleccionada es sábado o domingo
+                    if (start.day() === 6 || start.day() === 0 || end.day() === 6 || end.day() === 0) {
+                        return false; // No se permite la selección
+                    }
+                    return true; // Se permite la selección
+                },
+    
+                events: [{% for calendar in calendars %}{ id : '{{calendar[0]}}', title : '{{calendar[3]}}', start : '{{calendar[4]}}', end : '{{calendar[5]}}', }, {% endfor %}], //muestra todas las fechas del calendario haciendo llamar un query al app.py
+                selectable: true,
+                selectHelper: true,
+                select: function(start, end, allDay) {
+                    var title = prompt("Ingresa motivo de la consulta");
+                    if (title) {
+                        
+                        var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
+                        var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
+                        $.ajax({
+                            url: "/insert/{{medico[0][1]}}:{{id_paciente}}",    //inserta una cita dentro del calendario
+                            type: "POST",
+                            data: {
+                                title: title,
+                                start: start,
+                                end: end
+                            },
+    
+                            success: function(data) {
+                                alert("Evento agregado correctamente!");
+                                window.location.replace("/calendario/{{medico[0][1]}}");
+                            }
+                        })
+                    }
+                }
+            });
+        });
+    </script>
+    
+    
+</head>
+    <div class="container">
+        <h2 align="center">Calendario - {{ medico[0][0] }}</h2>
+        <br>
+
+        <div id="calendar"></div>
+    </div>
+{% endblock %}

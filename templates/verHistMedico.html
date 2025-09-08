@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Historial Medico{% endblock %}  
+{% block content %}
+
+	<!--MAIN-PAGE-->
+        <style>
+            .form-container {
+                max-width: 700px;
+                margin: auto;
+                padding: 2rem;
+            }
+            .card {
+                margin-bottom: 20px;
+            }
+            .card-header {
+                background-color: rgb(52, 74, 93);
+                color: white;
+            }
+        </style>
+        
+    <div class="container">
+        <h2 class="text-center mb-4">Historial Médico</h2>
+        <div class="card">
+            <div class="card-header">Fecha de Nacimiento</div>
+            <div class="card-body">{{ hist_medico.fechaNacimiento }}</div>
+        </div>
+        <div class="card">
+            <div class="card-header">Enfermedades Previas</div>
+            <div class="card-body">{{ hist_medico.enfermedadesPrevias }}</div>
+        </div>
+        <div class="card">
+            <div class="card-header">Medicamentos Actuales</div>
+            <div class="card-body">{{ hist_medico.medicamentos }}</div>
+        </div>
+        <div class="card">
+            <div class="card-header">Cirugías Previas</div>
+            <div class="card-body">{{ hist_medico.cirugias }}</div>
+        </div>
+        <div class="card">
+            <div class="card-header">Antecedentes Familiares de Enfermedades</div>
+            <div class="card-body">{{ hist_medico.antecedentes }}</div>
+        </div>
+        <div class="card">
+            <div class="card-header">Tipo de Sangre</div>
+            <div class="card-body">{{ hist_medico.tipoSangre }}</div>
+        </div>
+        <div class="card">
+            <div class="card-header">Alergias</div>
+            <div class="card-body">{{ hist_medico.alergias }}</div>
+        </div>
+    </div>
+{% endblock %}

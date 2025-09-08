@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Listado de Medicos{% endblock %}  
+{% block content %}
+
+  <style>
+      .doctor-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+  </style>
+  <!-- INICIO DEL MAIN-PAGE -->
+  <div class="container">
+    <div class="row">
+      <!-- INICIA LISTADO DE PERFILES DE DOCTORES -->
+      {% for medico in medicos %}
+      <div class="col-md-4 my-3" name="Cont-Medico">
+        <a href="/calendario/{{ medico[3] }}"> <img src="/static/images/doctores/{{medico[4]}}.png" alt="{{ medico[0] }} , {{ medico[1] }}" class="doctor-image"></a>
+        <h4>{{ medico[0] }}</h4>
+        <p>Especialidad: {{ medico[1] }}</p>
+        <p>Teléfono: {{ medico[2] }}</p>
+      </div>
+      {% endfor %}
+      <!-- FINALIZA LISTADO DE PERFILES DE DOCTORES -->
+    </div>
+  </div>
+  <!-- FIN DEL MAIN-PAGE -->
+
+{% endblock %}
